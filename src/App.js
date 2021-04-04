@@ -53,14 +53,14 @@ const Grid = styled.div`
 `;
 
 const Buttons = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   width: 100%;
   margin: 0 auto;
 
   @media(min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
     max-width: 1024px;
   }
 
@@ -69,11 +69,25 @@ const Buttons = styled.div`
     color: #430f0c;
     border: solid 3px #430f0c;
     text-shadow: 2px 2px rgba(67, 15, 12, 0.25);
-    border-radius: 0.5rem;
     font-family: 'Stardew Valley', sans-serif;
-    font-size: 24px;
     padding: 0.25rem;
     box-shadow: 0.25rem 0.25rem 0.25rem rgba(67, 15, 12, 0.25);
+
+    &.spring:hover {
+      background-image: ${backgrounds.spring};
+    }
+
+    &.summer:hover {
+      background-image: ${backgrounds.summer};
+    }
+
+    &.fall:hover {
+      background-image: ${backgrounds.fall};
+    }
+
+    &.winter:hover {
+      background-image: ${backgrounds.winter};
+    }
   }
 `;
 
@@ -95,10 +109,10 @@ function App() {
         {filteredFriends.map(friend => <Card key={friend.name} friend={friend} />)}
       </Grid>
       <Buttons>
-          <button onClick={() => setActiveSeason('spring')}>Spring</button>
-          <button onClick={() => setActiveSeason('summer')}>Summer</button>
-          <button onClick={() => setActiveSeason('fall')}>Fall</button>
-          <button onClick={() => setActiveSeason('winter')}>Winter</button>
+          <button className="spring" onClick={() => setActiveSeason('spring')}>Spring</button>
+          <button className="summer" onClick={() => setActiveSeason('summer')}>Summer</button>
+          <button className="fall" onClick={() => setActiveSeason('fall')}>Fall</button>
+          <button className="winter" onClick={() => setActiveSeason('winter')}>Winter</button>
         </Buttons>
     </Main>
   );
